@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "25.0.0"// Note: this version should match the latest build-tools version
+    // that you installed in the SDK manager
+
+    defaultConfig {
+        applicationId "com.swyngmusic.swyng"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // This library handles authentication and authorization
+    compile 'com.spotify.sdk:spotify-auth-beta23-noconnect-2.20b@aar'
+
+    // This library handles music playback
+    compile 'com.spotify.sdk:spotify-player-beta23-noconnect-2.20b@aar'
+
+    // All other dependencies for your app should also be here:
+    compile 'com.android.support:appcompat-v7:24.2.1'
+
+    compile 'com.android.support:customtabs:24.2.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    androidTestCompile 'org.hamcrest:hamcrest-core:1.3'
+}
